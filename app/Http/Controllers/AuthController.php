@@ -56,7 +56,7 @@ class AuthController extends Controller
     // logic untuk logout
     public function logout(){
         Session::forget('user'); // hapus session user
-        Session::flush();        // optional: hapus semua session
+        Session::flush();// optional: hapus semua session
         return redirect()->route('login')->with('success', 'Anda berhasil logout!');
     }
 
