@@ -19,10 +19,16 @@
                 <label class="form-label fw-semibold">Nama Siswa</label>
                 <input type="text" name="nama_siswa" class="form-control" placeholder="Masukkan Nama Siswa" required>
             </div>
-
+            
             <div class="mb-3">
                 <label class="form-label fw-semibold">Keahlian</label>
                 <input type="text" name="keahlian" class="form-control" placeholder="Masukkan Keahlian">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Foto</label>
+                <input type="file" name="foto" class="form-control">
+                <small class="text-muted">Format file: jpg, jpeg, png</small>
             </div>
 
             <div class="mb-3">

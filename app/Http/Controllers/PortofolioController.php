@@ -28,17 +28,17 @@ class PortofolioController extends Controller
             'nisn' => 'required|unique:portofolio,nisn',
             'nama_siswa' => 'required',
             'keahlian' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'sertifikat' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
             'pengalaman' => 'nullable',
         ]);
-        
-        // Simpan foto ke storage/app/public/portofolio
-        $fotoPath = null;
-        if ($request->hasFile('foto')) {
-            $fotoPath = $request->file('foto')->store('portofolio', 'public');
-        }
 
         $data = $request->all();
+
+        // Simpan foto ke storage/app/public/portofolio
+        if ($request->hasFile('foto')) {
+            $data['foto'] = $request->file('foto')->store('portofolio', 'public');
+        }
 
         if ($request->hasFile('sertifikat')) {
             $data['sertifikat'] = $request->file('sertifikat')->store('portofolio', 'public');
@@ -63,11 +63,19 @@ class PortofolioController extends Controller
         $request->validate([
             'nama_siswa' => 'required',
             'keahlian' => 'nullable',
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'sertifikat' => 'nullable|file|mimes:pdf,jpg,jpeg,png',
             'pengalaman' => 'nullable',
         ]);
 
         $data = $request->all();
+
+        if ($request->hasFile('foto')) {
+            if ($portofolio->foto) {
+                Storage::disk('public')->delete($portofolio->foto);
+            }
+            $data['foto'] = $request->file('foto')->store('portofolio', 'public');
+        }
 
         if ($request->hasFile('sertifikat')) {
             if ($portofolio->sertifikat) {
@@ -86,6 +94,10 @@ class PortofolioController extends Controller
     {
         $portofolio = Portofolio::findOrFail($nisn);
 
+        if ($portofolio->foto) {
+            Storage::disk('public')->delete($portofolio->foto);
+        }
+
         if ($portofolio->sertifikat) {
             Storage::disk('public')->delete($portofolio->sertifikat);
         }
@@ -93,5 +105,12 @@ class PortofolioController extends Controller
         $portofolio->delete();
 
         return redirect()->route('portofolio.index')->with('success', 'Portofolio berhasil dihapus!');
+    }
+
+    // Menampilkan portofolio untuk user publik (tanpa login)
+    public function publicIndex()
+    {
+        $portofolios = Portofolio::all(); // Ambil semua portofolio tanpa pagination untuk tampilan publik
+        return view('user.portofolio', compact('portofolios'));
     }
 }

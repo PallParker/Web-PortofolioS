@@ -27,6 +27,15 @@
             </div>
 
             <div class="mb-3">
+                <label class="form-label fw-semibold">Foto</label>
+                @if($portofolio->foto)
+                    <p><a href="{{ asset('storage/'.$portofolio->foto) }}" target="_blank">Lihat Foto Lama</a></p>
+                @endif
+                <input type="file" name="foto" class="form-control">
+                <small class="text-muted">Kosongkan jika tidak ingin mengganti file.</small>
+            </div>
+
+            <div class="mb-3">
                 <label class="form-label fw-semibold">Sertifikat</label>
                 @if($portofolio->sertifikat)
                     <p><a href="{{ asset('storage/'.$portofolio->sertifikat) }}" target="_blank">Lihat Sertifikat Lama</a></p>

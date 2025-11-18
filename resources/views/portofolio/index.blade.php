@@ -34,6 +34,7 @@
                             <th>NIS</th>
                             <th>Nama Siswa</th>
                             <th>Keahlian</th>
+                            <th>Foto</th>
                             <th>Sertifikat</th>
                             <th>Pengalaman</th>
                             <th style="width: 10%;">Aksi</th>
@@ -47,11 +48,23 @@
                             <td>{{ $p->nama_siswa }}</td>
                             <td>{{ $p->keahlian }}</td>
                             <td class="text-center">
+                                @if($p->foto)
+                                    <a href="{{ asset('storage/' . $p->foto) }}" target="_blank">
+                                        <img src="{{ asset('storage/' . $p->foto) }}"
+                                            alt="Foto"
+                                            width="120"
+                                            class="rounded shadow-sm">
+                                    </a>
+                                @else
+                                    <span class="text-muted">No Image</span>
+                                @endif
+                            </td>
+                            <td class="text-center">
                                 @if($p->sertifikat)
                                     <a href="{{ asset('storage/' . $p->sertifikat) }}" target="_blank">
-                                        <img src="{{ asset('storage/' . $p->sertifikat) }}" 
-                                            alt="Sertifikat" 
-                                            width="120" 
+                                        <img src="{{ asset('storage/' . $p->sertifikat) }}"
+                                            alt="Sertifikat"
+                                            width="120"
                                             class="rounded shadow-sm">
                                     </a>
                                 @else
@@ -100,7 +113,7 @@ document.getElementById('searchInput').addEventListener('keyup', function () {
 
     rows.forEach(row => {
         // urutan kolom:
-        // 0: No, 1: NIS, 2: Nama, 3: Keahlian, 4: Sertifikat, 5: Pengalaman, 6: Aksi
+        // 0: No, 1: NIS, 2: Nama, 3: Keahlian, 4: Foto, 5: Sertifikat, 6: Pengalaman, 7: Aksi
         let nis = row.cells[1]?.textContent.toLowerCase() || '';
         let nama = row.cells[2]?.textContent.toLowerCase() || '';
         let keahlian = row.cells[3]?.textContent.toLowerCase() || '';

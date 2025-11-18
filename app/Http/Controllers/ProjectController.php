@@ -89,4 +89,11 @@ class ProjectController extends Controller
         $project->delete();
         return redirect()->route('project.index')->with('success', 'Project berhasil dihapus!');
     }
+
+    // Menampilkan projek untuk user publik (tanpa login)
+    public function publicIndex()
+    {
+        $projects = Project::orderBy('created_at', 'desc')->get();
+        return view('user.projek', compact('projects'));
+    }
 }

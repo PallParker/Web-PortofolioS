@@ -66,4 +66,11 @@ class LaporanController extends Controller
 
         return redirect()->route('laporan.index')->with('success', 'Laporan berhasil dihapus!');
     }
+
+    // Menampilkan laporan untuk user publik (tanpa login)
+    public function publicIndex()
+    {
+        $laporan = Laporan::orderBy('tanggal', 'desc')->get();
+        return view('user.laporan', compact('laporan'));
+    }
 }

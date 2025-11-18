@@ -113,4 +113,11 @@ class KelolaDataController extends Controller
         DB::table('kelola_data')->where('id', $id)->delete();
         return redirect()->route('keloladata')->with('success', 'Data berhasil dihapus!');
     }
+
+    // Menampilkan data siswa untuk user publik (tanpa login)
+    public function publicIndex()
+    {
+        $data = DB::table('kelola_data')->get();
+        return view('user.data-siswa', compact('data'));
+    }
 }

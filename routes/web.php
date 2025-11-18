@@ -7,7 +7,7 @@ use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\LaporanController;
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return redirect()->route('login');
 });
 
@@ -50,3 +50,16 @@ Route::post('/admin/laporan/store', [LaporanController::class, 'store'])->name('
 Route::get('/admin/laporan/edit/{id}', [LaporanController::class, 'edit'])->name('laporan.edit');
 Route::put('/admin/laporan/update/{id}', [LaporanController::class, 'update'])->name('laporan.update');
 Route::delete('/admin/laporan/delete/{id}', [LaporanController::class, 'destroy'])->name('laporan.destroy');
+
+// Route untuk user publik (tanpa login)
+Route::get('/', function () {
+    return view('user.beranda');
+})->name('user.beranda');
+
+Route::get('/user/data-siswa', [App\Http\Controllers\KelolaDataController::class, 'publicIndex'])->name('user.data-siswa');
+Route::get('/user/portofolio', [App\Http\Controllers\PortofolioController::class, 'publicIndex'])->name('user.portofolio');
+Route::get('/user/projek', [App\Http\Controllers\ProjectController::class, 'publicIndex'])->name('user.projek');
+Route::get('/user/laporan', [App\Http\Controllers\LaporanController::class, 'publicIndex'])->name('user.laporan');
+
+// Route lama untuk backward compatibility
+Route::get('/portofolio-public', [PortofolioController::class, 'publicIndex'])->name('portofolio.public');

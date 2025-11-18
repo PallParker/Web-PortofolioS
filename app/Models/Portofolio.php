@@ -17,13 +17,14 @@ class Portofolio extends Model
         'nisn',
         'nama_siswa',
         'keahlian',
+        'foto',
         'sertifikat',
         'pengalaman',
     ];
 
-    // relasi ke datasiswa
+    // relasi ke kelola data siswa
     public function siswa() {
-        return $this->belongsTo(Datasiswa::class, 'nisn', 'nisn');
+        return $this->belongsTo(KelolaData::class, 'nisn', 'nisn');
     }
 }
 
