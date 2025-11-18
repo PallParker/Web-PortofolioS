@@ -105,7 +105,7 @@
         <!-- Bagian Laporan -->
         <div class="sidebar-section">
             <h6>Laporan</h6>
-            <a href="{{ route('laporan') }}">
+            <a href="{{ route('laporan.index') }}">
                 <i class="fa-solid fa-chart-bar"></i> Laporan
             </a>
         </div>
