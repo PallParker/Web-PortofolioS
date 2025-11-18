@@ -34,7 +34,16 @@
                     @if($portofolio->pengalaman)
                     <p class="card-text">
                         <i class="fa-solid fa-briefcase text-info"></i>
-                        <strong>Pengalaman:</strong> {{ Str::limit($portofolio->pengalaman, 100) }}
+                        <strong>Pengalaman:</strong>
+                        @if(strlen($portofolio->pengalaman) > 100)
+                            {{ Str::limit($portofolio->pengalaman, 100) }}
+                            <details>
+                                <summary style="cursor: pointer; color: #007bff;">Baca Selengkapnya</summary>
+                                {{ $portofolio->pengalaman }}
+                            </details>
+                        @else
+                            {{ $portofolio->pengalaman }}
+                        @endif
                     </p>
                     @endif
 
