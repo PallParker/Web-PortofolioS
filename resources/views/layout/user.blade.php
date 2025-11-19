@@ -13,10 +13,12 @@
             margin: 0;
             font-family: 'Segoe UI', sans-serif;
             background-color: #f8f9fa;
+            padding-top: 70px; /* Adjust for fixed navbar */
         }
 
+        /* Navbar */
         .navbar {
-            background-color: #343a40;
+            background-color: #1f1f1f;
             color: white;
             padding: 15px 0;
         }
@@ -24,6 +26,11 @@
         .navbar-brand {
             font-weight: bold;
             font-size: 24px;
+        }
+
+        .nav-link.active {
+            color: #0d6efd !important;
+            font-weight: 600;
         }
 
         .content {
@@ -57,13 +64,39 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
+
+        /* Footer */
+        footer {
+            background: #1f1f1f;
+            color: white;
+        }
+
+        footer h5 {
+            font-weight: 600;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            opacity: 0.7;
+        }
+
+        footer p.small {
+            color: #d3d3d3;
+        }
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ route('user.beranda') }}">
-                <i class="fa-solid fa-graduation-cap"></i> Sistem Portofolio Siswa
+                <i class="fa-solid fa-graduation-cap"></i> Portofolio Siswa
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -100,10 +133,42 @@
         </div>
     </nav>
 
+    <!-- CONTENT -->
     <div class="content">
         @yield('content')
     </div>
 
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+
+            <h5 class="fw-bold mb-3">
+                <i class="fa-solid fa-graduation-cap me-2"></i> Portofolio Siswa
+            </h5>
+
+            <p class="text-secondary mb-4" style="margin: 0 auto; max-width: 600px;">
+                Sistem Portofolio Siswa untuk menampilkan data, karya, dan laporan kegiatan.
+            </p>
+
+            <div class="d-flex justify-content-center gap-4 mb-3">
+                <a href="#" class="text-white text-decoration-none">
+                    <i class="fa-solid fa-envelope"></i> Email
+                </a>
+                <a href="#" class="text-white text-decoration-none">
+                    <i class="fa-solid fa-phone"></i> Kontak
+                </a>
+                <a href="#" class="text-white text-decoration-none">
+                    <i class="fa-solid fa-location-dot"></i> Lokasi
+                </a>
+            </div>
+
+            <p class="small text-secondary mb-0">
+                &copy; 2025 Portofolio Siswa. All rights reserved.
+            </p>
+
+        </div>
+    </footer>
+    
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>

@@ -7,7 +7,7 @@
     <div class="row mb-4">
         <div class="col-12 text-center">
             <h1 class="display-4 font-weight-bold text-dark">
-                <i class="fa-solid fa-graduation-cap text-primary"></i> Portofolio Siswa
+                <i class="fa-solid fa-graduation-cap text-dark"></i> Portofolio Siswa
             </h1>
             <p class="lead text-muted">Temukan talenta dan prestasi siswa kami</p>
         </div>
