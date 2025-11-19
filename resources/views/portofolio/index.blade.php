@@ -61,14 +61,11 @@
                             </td>
                             <td class="text-center">
                                 @if($p->sertifikat)
-                                    <a href="{{ asset('storage/' . $p->sertifikat) }}" target="_blank">
-                                        <img src="{{ asset('storage/' . $p->sertifikat) }}"
-                                            alt="Sertifikat"
-                                            width="120"
-                                            class="rounded shadow-sm">
+                                    <a href="{{ asset('img/' . $p->sertifikat) }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                        <i class="fa-solid fa-eye"></i> Lihat
                                     </a>
                                 @else
-                                    <span class="text-muted">No Image</span>
+                                    <span class="text-muted">No File</span>
                                 @endif
                             </td>
                             <td>{!! ltrim(str_replace('-', '<br>• ', $p->pengalaman), '<br>') !!}</td>

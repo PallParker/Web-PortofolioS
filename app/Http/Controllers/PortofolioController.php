@@ -35,13 +35,17 @@ class PortofolioController extends Controller
 
         $data = $request->all();
 
-        // Simpan foto ke storage/app/public/portofolio
+        // Simpan foto ke public/img
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('portofolio', 'public');
+            $filename = time() . '_' . $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move(public_path('img'), $filename);
+            $data['foto'] = $filename;
         }
 
         if ($request->hasFile('sertifikat')) {
-            $data['sertifikat'] = $request->file('sertifikat')->store('portofolio', 'public');
+            $filename = time() . '_' . $request->file('sertifikat')->getClientOriginalName();
+            $request->file('sertifikat')->move(public_path('img'), $filename);
+            $data['sertifikat'] = $filename;
         }
 
         Portofolio::create($data);
@@ -74,20 +78,18 @@ class PortofolioController extends Controller
             if ($portofolio->foto && file_exists(public_path('img/' . $portofolio->foto))) {
                 unlink(public_path('img/' . $portofolio->foto));
             }
-            $file = $request->file('foto');
-            $namaFile = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('img'), $namaFile);
-            $data['foto'] = $namaFile;
+            $filename = time() . '_' . $request->file('foto')->getClientOriginalName();
+            $request->file('foto')->move(public_path('img'), $filename);
+            $data['foto'] = $filename;
         }
 
         if ($request->hasFile('sertifikat')) {
             if ($portofolio->sertifikat && file_exists(public_path('img/' . $portofolio->sertifikat))) {
                 unlink(public_path('img/' . $portofolio->sertifikat));
             }
-            $file = $request->file('sertifikat');
-            $namaFile = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('img'), $namaFile);
-            $data['sertifikat'] = $namaFile;
+            $filename = time() . '_' . $request->file('sertifikat')->getClientOriginalName();
+            $request->file('sertifikat')->move(public_path('img'), $filename);
+            $data['sertifikat'] = $filename;
         }
 
         $portofolio->update($data);
