@@ -49,8 +49,8 @@
                             <td>{{ $p->keahlian }}</td>
                             <td class="text-center">
                                 @if($p->foto)
-                                    <a href="{{ asset('storage/' . $p->foto) }}" target="_blank">
-                                        <img src="{{ asset('storage/' . $p->foto) }}"
+                                    <a href="{{ asset('img/' . $p->foto) }}" target="_blank">
+                                        <img src="{{ asset('img/' . $p->foto) }}"
                                             alt="Foto"
                                             width="120"
                                             class="rounded shadow-sm">

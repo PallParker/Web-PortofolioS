@@ -71,17 +71,23 @@ class PortofolioController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('foto')) {
-            if ($portofolio->foto) {
-                Storage::disk('public')->delete($portofolio->foto);
+            if ($portofolio->foto && file_exists(public_path('img/' . $portofolio->foto))) {
+                unlink(public_path('img/' . $portofolio->foto));
             }
-            $data['foto'] = $request->file('foto')->store('portofolio', 'public');
+            $file = $request->file('foto');
+            $namaFile = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('img'), $namaFile);
+            $data['foto'] = $namaFile;
         }
 
         if ($request->hasFile('sertifikat')) {
-            if ($portofolio->sertifikat) {
-                Storage::disk('public')->delete($portofolio->sertifikat);
+            if ($portofolio->sertifikat && file_exists(public_path('img/' . $portofolio->sertifikat))) {
+                unlink(public_path('img/' . $portofolio->sertifikat));
             }
-            $data['sertifikat'] = $request->file('sertifikat')->store('portofolio', 'public');
+            $file = $request->file('sertifikat');
+            $namaFile = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('img'), $namaFile);
+            $data['sertifikat'] = $namaFile;
         }
 
         $portofolio->update($data);
@@ -94,12 +100,12 @@ class PortofolioController extends Controller
     {
         $portofolio = Portofolio::findOrFail($nisn);
 
-        if ($portofolio->foto) {
-            Storage::disk('public')->delete($portofolio->foto);
+        if ($portofolio->foto && file_exists(public_path('img/' . $portofolio->foto))) {
+            unlink(public_path('img/' . $portofolio->foto));
         }
 
-        if ($portofolio->sertifikat) {
-            Storage::disk('public')->delete($portofolio->sertifikat);
+        if ($portofolio->sertifikat && file_exists(public_path('img/' . $portofolio->sertifikat))) {
+            unlink(public_path('img/' . $portofolio->sertifikat));
         }
 
         $portofolio->delete();

@@ -17,7 +17,7 @@
         @forelse($portofolios as $portofolio)
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
-                <img src="{{ $portofolio->foto ? asset('storage/' . $portofolio->foto) : asset('img/default.jpg') }}"
+                <img src="{{ $portofolio->foto ? asset('img/' . $portofolio->foto) : asset('img/default.jpg') }}"
                      class="card-img-top"
                      alt="Foto {{ $portofolio->nama_siswa }}">
                 <div class="card-body d-flex flex-column">
@@ -49,7 +49,7 @@
 
                     <div class="mt-auto">
                         @if($portofolio->sertifikat)
-                        <a href="{{ asset('storage/' . $portofolio->sertifikat) }}"
+                        <a href="{{ asset('img/' . $portofolio->sertifikat) }}"
                            class="btn btn-primary btn-sm"
                            target="_blank">
                             <i class="fa-solid fa-file-pdf"></i> Lihat Sertifikat

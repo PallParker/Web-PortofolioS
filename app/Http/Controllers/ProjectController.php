@@ -37,7 +37,10 @@ class ProjectController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('gambar')) {
-            $data['gambar'] = $request->file('gambar')->store('project', 'public');
+            $file = $request->file('gambar');
+            $namaFile = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('img'), $namaFile);
+            $data['gambar'] = $namaFile;
         }
 
         Project::create($data);
@@ -69,10 +72,13 @@ class ProjectController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('gambar')) {
-            if ($project->gambar) {
-                Storage::disk('public')->delete($project->gambar);
+            if ($project->gambar && file_exists(public_path('img/' . $project->gambar))) {
+                unlink(public_path('img/' . $project->gambar));
             }
-            $data['gambar'] = $request->file('gambar')->store('project', 'public');
+            $file = $request->file('gambar');
+            $namaFile = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('img'), $namaFile);
+            $data['gambar'] = $namaFile;
         }
 
         $project->update($data);
@@ -83,8 +89,8 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
-        if ($project->gambar) {
-            Storage::disk('public')->delete($project->gambar);
+        if ($project->gambar && file_exists(public_path('img/' . $project->gambar))) {
+            unlink(public_path('img/' . $project->gambar));
         }
         $project->delete();
         return redirect()->route('project.index')->with('success', 'Project berhasil dihapus!');

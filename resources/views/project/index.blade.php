@@ -56,9 +56,9 @@
                                 <td>{{ $p->kategori ?? '-' }}</td>
                                 <td class="text-center">
                                     @if($p->gambar)
-                                        <a href="{{ asset('storage/' . $p->gambar) }}" target="_blank">
-                                            <img src="{{ asset('storage/' . $p->gambar) }}" 
-                                                 alt="Project" width="120" 
+                                        <a href="{{ asset('img/' . $p->gambar) }}" target="_blank">
+                                            <img src="{{ asset('img/' . $p->gambar) }}"
+                                                 alt="Project" width="120"
                                                  class="rounded shadow-sm">
                                         </a>
                                     @else

@@ -18,7 +18,7 @@
         <div class="col-lg-6 mb-4">
             <div class="card h-100">
                 @if($project->gambar)
-                <img src="{{ asset('storage/' . $project->gambar) }}"
+                <img src="{{ asset('img/' . $project->gambar) }}"
                      class="card-img-top"
                      alt="Gambar {{ $project->judul_project }}"
                      style="height: 250px; object-fit: cover;">
