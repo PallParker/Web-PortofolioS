@@ -114,6 +114,7 @@
     margin: 10px 0;
   }
 
+  
 </style>
 
 <main class="content">
@@ -128,7 +129,7 @@
       <span class="badge-role">Super Admin</span>
     </div>
 
-    <!--Statistik -->
+    <!-- 🔢 Statistik -->
     <div class="stats-container">
       <div class="stat-card blue">
         <i class="fa-solid fa-book"></i>
@@ -155,7 +156,7 @@
       </div>
     </div>
 
-    <!-- Info Profil -->
+    <!-- ℹ️ Info Profil -->
     <div class="profile-info mt-4">
       <p><i class="fa-solid fa-envelope"></i>
       <strong>Email:</strong>

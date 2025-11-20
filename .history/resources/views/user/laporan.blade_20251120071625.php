@@ -34,7 +34,7 @@
                     <div class="mt-3 text-end">
                        <small class="text-muted">
                             Dibuat: {{ $item->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }} WIB
-                        </small>
+                    </small>
                     </div>
                 </div>
             </div>

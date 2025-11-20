@@ -32,8 +32,8 @@
                     <p class="card-text">{{ $item->keterangan }}</p>
 
                     <div class="mt-3 text-end">
-                       <small class="text-muted">
-                            Dibuat: {{ $item->created_at->timezone('Asia/Jakarta')->format('d M Y H:i') }} WIB
+                        <small class="text-muted">
+                            Dibuat: {{ $item->created_at->format('d M Y H:i') }}
                         </small>
                     </div>
                 </div>

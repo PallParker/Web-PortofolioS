@@ -47,14 +47,14 @@ class ProjectController extends Controller
         return redirect()->route('project.index')->with('success', 'Project berhasil ditambahkan!');
     }
 
-    // Form edit project
+    //  Form edit project
     public function edit($id)
     {
         $project = Project::findOrFail($id);
         return view('project.edit', compact('project'));
     }
 
-    // Update data
+    //  Update data
     public function update(Request $request, $id)
     {
         $project = Project::findOrFail($id);
@@ -85,7 +85,7 @@ class ProjectController extends Controller
         return redirect()->route('project.index')->with('success', 'Project berhasil diperbarui!');
     }
 
-    // Hapus data
+    // 🔹 Hapus data
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
