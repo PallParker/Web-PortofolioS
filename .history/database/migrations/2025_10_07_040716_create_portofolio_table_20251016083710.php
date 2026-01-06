@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('nisn')->primary(); // primary key pakai NISN
             $table->string('nama_siswa');
             $table->text('keahlian')->nullable();
-            $table->string('foto')->nullable(); // file upload foto
             $table->string('sertifikat')->nullable(); // file upload sertifikat
             $table->text('pengalaman')->nullable();
             $table->timestamps();

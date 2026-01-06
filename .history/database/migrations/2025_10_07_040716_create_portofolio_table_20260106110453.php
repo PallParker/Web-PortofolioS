@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('portofolio', function (Blueprint $table) {
             $table->string('nisn')->primary(); // primary key pakai NISN
-            $table->string('nama_siswa');
+            $table->string('nama_siswa');mem
             $table->text('keahlian')->nullable();
             $table->string('foto')->nullable(); // file upload foto
             $table->string('sertifikat')->nullable(); // file upload sertifikat
